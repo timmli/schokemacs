@@ -1,0 +1,5 @@
+* schokemacs
+Install Emacs with Chocolatey
+
+- [ ] Store path to =langtool= in a system variable, e.g. =wemacs_langtool_path=.
+

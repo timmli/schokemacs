@@ -13,6 +13,7 @@ set GRAPHVIZ_PATH=C:\Program Files ^(x86^)\Graphviz2.38\bin
 set GNUPG_PATH=C:\Program Files ^(x86^)\Gpg4win\..\GnuPG\bin
 set GNUPLOT_PATH=C:\Program Files\gnuplot\bin
 set IMAGEMAGICK_PATH=C:\Program Files\ImageMagick-7.0.8-Q16
+set LANGUAGETOOL_PATH=C:\ProgramData\chocolatey\lib\languagetool\tools\LanguageTool-4.3
 set OPENJDK_PATH=C:\Program Files\OpenJDK\jdk-11\bin
 set PANDOC_PATH=C:\Program Files\Pandoc
 set PLANTUML_PATH=C:\ProgramData\chocolatey\lib\plantuml\tools
@@ -50,6 +51,7 @@ choco install^
  gpg4win^
  gnuplot^
  imagemagick.app^
+ languagetool^
  openjdk^
  pandoc --ia=ALLUSERS=1^
  plantuml^
@@ -92,6 +94,7 @@ echo.
 rem Finally store variable permanently:
 setx WEMACS_HOME %WEMACS_HOME%
 setx WEMACS_PATH "%WEMACS_PATH%"
+setx WEMACS_LANGUAGETOOL_PATH %LANGUAGETOOL_PATH%
 echo.
 rem Don't forget to set the HOME variable:
 if not exist "%HOME%" (
