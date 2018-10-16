@@ -95,6 +95,7 @@ rem Finally store variable permanently:
 setx WEMACS_HOME %WEMACS_HOME%
 setx WEMACS_PATH "%WEMACS_PATH%"
 setx WEMACS_LANGUAGETOOL_PATH %LANGUAGETOOL_PATH%
+setx MAGICK_CODER_MODULE_PATH "%IMAGEMAGICK_PATH%\modules\coders"
 echo.
 rem Don't forget to set the HOME variable:
 if not exist "%HOME%" (
