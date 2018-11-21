@@ -5,6 +5,7 @@ echo Note: SCHOKEMACS uses WEMACS variables.
 echo Version: 201810.1
 echo.
 
+set CHOCO_BIN_PATH=C:\ProgramData\chocolatey\bin 
 set ANACONDA_PATH=C:\tools\Anaconda3;C:\tools\Anaconda3\Scripts
 set ASPELL_PATH=aspell\bin
 set CYGWIN_PATH=C:\tools\cygwin\bin
@@ -43,6 +44,7 @@ echo Installing software ...
 echo.
 
 choco install^
+ ag^
  anaconda3^
  emacs64^
  cygwin^
@@ -56,6 +58,7 @@ choco install^
  pandoc --ia=ALLUSERS=1^
  plantuml^
  r.project^
+ ripgrep^
  sqlite^
  sumatrapdf.install^
  strawberryperl
@@ -86,6 +89,7 @@ set WEMACS_PATH=^
 %R_PATH%;^
 %STRAWBERRY_PATH%;^
 %SUMATRA_PATH%;^
+%CHOCO_BIN_PATH%;^
 %CYGWIN_PATH%
 
 echo WEMACS_PATH:
