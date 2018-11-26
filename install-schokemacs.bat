@@ -61,7 +61,8 @@ choco install^
  ripgrep^
  sqlite^
  sumatrapdf.install^
- strawberryperl
+ strawberryperl^
+ wget
 echo.
 exit /b
 
