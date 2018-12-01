@@ -33,6 +33,8 @@ echo.
 
 call :check-wemacs_path
 
+call :setup-python	
+
 echo.
 pause
 exit
@@ -106,6 +108,23 @@ rem Don't forget to set the HOME variable:
 if not exist "%HOME%" (
 call :set-home-variable
 )
+echo.
+exit /b
+
+rem =============================================================
+
+:setup-python
+echo Installing python packages required by elpy ...
+where pip >nul 2>nul
+if %ERRORLEVEL% neq 0 (
+    echo pip not found.
+		echo.
+    exit /b
+)
+rem Elpy's recommendation
+pip install jedi flake8 importmagic autopep8
+rem Zamansky's recommendation
+pip install pylint virtualenv epc
 echo.
 exit /b
 
