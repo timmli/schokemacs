@@ -56,6 +56,7 @@ choco install^
  gnuplot^
  imagemagick.app^
  languagetool^
+ Lein^
  openjdk^
  pandoc --ia=ALLUSERS=1^
  plantuml^
