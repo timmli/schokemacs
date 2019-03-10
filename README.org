@@ -1,2 +1,12 @@
 * schokemacs
-Install Emacs with Chocolatey
+
+Install Emacs and software that is used in Emacs with Chocolatey
+
+** Installation
+
+- Be sure to have Chocolatey installed, otherwise you can install it with =install-choco.bat=. 
+- Run the script =install-schokemacs.bat= with administrator priviledges.
+
+** Remap CAPS-LOCK key to CTRL key
+
+In order to remap the CAPS-LOCK key to the CTRL key under Windows, I'm using [[https://docs.microsoft.com/en-us/sysinternals/downloads/ctrl2cap][ctrl2cap]].
