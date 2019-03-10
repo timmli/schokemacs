@@ -4,7 +4,7 @@ Install Emacs and software that is used in Emacs with Chocolatey
 
 ** Installation
 
-- Be sure to have Chocolatey installed, otherwise you can install it with =install-choco.bat=. 
+- Be sure to have [[https://chocolatey.org/install][Chocolatey]] installed, otherwise you can install it with =install-choco.bat=. 
 - Run the script =install-schokemacs.bat= with administrator priviledges.
 
 ** Remap CAPS-LOCK key to CTRL key
