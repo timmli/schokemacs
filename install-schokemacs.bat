@@ -2,13 +2,15 @@
 
 echo This scripts installs SCHOKEMACS using CHOCOLATEY.
 echo Note: SCHOKEMACS uses WEMACS variables.
-echo Version: 201810.1
+echo Version: 2019-10-19 
 echo.
 
 set CHOCO_BIN_PATH=C:\ProgramData\chocolatey\bin 
 set ANACONDA_PATH=C:\tools\Anaconda3;C:\tools\Anaconda3\Scripts
 set ASPELL_PATH=aspell\bin
-set CYGWIN_PATH=C:\tools\cygwin\bin
+set CYGWIN_PATH=C:\tools\cygwin
+set CYGWIN_BIN_PATH=C:\tools\cygwin\bin
+set GHOSTSCRIPT_PATH=C:\Program Files\gs\gs9.50\bin
 set GIT_PATH=C:\Program Files\Git\bin
 set GRAPHVIZ_PATH=C:\Program Files ^(x86^)\Graphviz2.38\bin
 set GNUPG_PATH=C:\Program Files ^(x86^)\Gpg4win\..\GnuPG\bin
@@ -16,13 +18,15 @@ set GNUPLOT_PATH=C:\Program Files\gnuplot\bin
 set IMAGEMAGICK_PATH=C:\Program Files\ImageMagick-7.0.8-Q16
 set LANGUAGETOOL_PATH=C:\ProgramData\chocolatey\lib\languagetool\tools\LanguageTool-4.3
 set OPENJDK_PATH=C:\Program Files\OpenJDK\jdk-11\bin
-set PANDOC_PATH=C:\Program Files\Pandoc
-set PLANTUML_PATH=C:\ProgramData\chocolatey\lib\plantuml\tools
-set PUTTY_PATH=C:\Program Files\PuTTY
 set R_PATH=C:\Program Files\R\R-3.4.2\bin
-set SQLITE_PATH=
 set STRAWBERRY_PATH=C:\Strawberry\perl\bin
-set SUMATRA_PATH=C:\Program Files\SumatraPDF
+
+rem The following binaries are available in CHOCO_BIN_PATH
+set PANDOC_PATH= &rem C:\Program Files\Pandoc
+set PLANTUML_PATH= &rem C:\ProgramData\chocolatey\lib\plantuml\tools
+set PUTTY_PATH= &rem C:\Program Files\PuTTY
+set SQLITE_PATH=
+set SUMATRA_PATH= &rem C:\Program Files\SumatraPDF
 
 call :set-wemacs-variables
 
@@ -33,7 +37,9 @@ echo.
 
 call :check-wemacs_path
 
-call :setup-python	
+call :setup-cygwin
+
+call :setup-python
 
 echo.
 pause
@@ -48,8 +54,9 @@ echo.
 choco install^
  ag^
  anaconda3^
- emacs64^
+ Emacs^
  cygwin^
+ Ghostscript^
  git.install^
  graphviz^
  gpg4win^
@@ -58,6 +65,7 @@ choco install^
  languagetool^
  Lein^
  openjdk^
+ OpenSSL.Light^
  pandoc --ia=ALLUSERS=1^
  plantuml^
  r.project^
@@ -77,10 +85,11 @@ set WEMACS_HOME=%~dp0
 echo WEMACS_HOME:
 echo %WEMACS_HOME%
 echo. 
-rem Construct WEMACS_PATH with CYGWIN_PATH being the last one:
+rem Construct WEMACS_PATH with CYGWIN_BIN_PATH being the last one:
 set WEMACS_PATH=^
 %ANACONDA_PATH%;^
 %WEMACS_HOME%%ASPELL_PATH%;^
+%GHOSTSCRIPT_PATH%;^
 %GIT_PATH%;^
 %GRAPHVIZ_PATH%;^
 %GNUPLOT_PATH%;^
@@ -94,7 +103,7 @@ set WEMACS_PATH=^
 %STRAWBERRY_PATH%;^
 %SUMATRA_PATH%;^
 %CHOCO_BIN_PATH%;^
-%CYGWIN_PATH%
+%CYGWIN_BIN_PATH%
 
 echo WEMACS_PATH:
 echo %WEMACS_PATH%
@@ -114,6 +123,18 @@ exit /b
 
 rem =============================================================
 
+:setup-cygwin
+if not exist "%CYGWIN_PATH%" (
+echo %CYGWIN_PATH% not found!
+) else (
+echo Installing further packages in Cygwin ...
+%CYGWIN_PATH%\cygwinsetup.exe -q --packages=aspell,aspell-de,aspell-en,aspell-fr
+)
+echo.
+exit /b
+
+rem =============================================================
+
 :setup-python
 echo Installing python packages required by elpy ...
 where pip >nul 2>nul
@@ -122,6 +143,7 @@ if %ERRORLEVEL% neq 0 (
 		echo.
     exit /b
 )
+rem NOTE: pip requires SSL, therefore OpenSSL is installed with choco.
 rem Elpy's recommendation
 pip install jedi flake8 importmagic autopep8
 rem Zamansky's recommendation
