@@ -18,7 +18,7 @@ set GNUPLOT_PATH=C:\Program Files\gnuplot\bin
 set IMAGEMAGICK_PATH=C:\Program Files\ImageMagick-7.0.8-Q16
 set LANGUAGETOOL_PATH=C:\ProgramData\chocolatey\lib\languagetool\tools\LanguageTool-4.3
 set OPENJDK_PATH=C:\Program Files\OpenJDK\jdk-11\bin
-set R_PATH=C:\Program Files\R\R-3.4.2\bin
+set R_PATH=C:\Program Files\R\R-3.6.1\bin
 set STRAWBERRY_PATH=C:\Strawberry\perl\bin
 
 rem The following binaries are available in CHOCO_BIN_PATH
